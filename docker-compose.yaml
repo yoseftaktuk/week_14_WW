@@ -10,10 +10,17 @@ services:
       MYSQL_USER: user
       MYSQL_DATABASE: weather_db
 
+    # ports:
+    #   - "3306:3306"
     volumes:
       - mysql_data:/data/db
     networks:
       - threat-network
+    healthcheck:
+      test: echo "f"
+      interval: 10s
+      timeout: 5s
+      retries: 5  
 
   api:
     build: .
@@ -22,10 +29,10 @@ services:
     ports:
       - "8000:8000"
     environment:
-      MYSQL_HOST: mysql
-      MYSQL_USER: root
-      MYSQL_PASSWORD: password
-      MYSQL_DATABASE: Weapon_Warehouse
+      MYSQL_HOST: 'mysql'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_DATABASE: 'Weapon_Warehouse'
     depends_on:
       mysql:
         condition: service_healthy

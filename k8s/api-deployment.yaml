@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: service-deployment
-        image: taktuk/wepons:v4
+        image: taktuk/wepons:v5
         ports:
         - containerPort: 8080
         env:

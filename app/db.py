@@ -21,9 +21,10 @@ class MySQLManager:
         except mysql.connector.Error as e:
             raise e
         
+        
  
 class Init_sql:
-    def __init__(self, cnx: MySQLConnection):
+    def __init__(self, cnx):
         self.cnx = cnx
     def create_db(self):
         query = 'CREATE DATABASE IF NOT EXISTS Weapon_Warehouse;'
