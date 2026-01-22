@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-deployment
+  labels:
+    app: service-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: service-deployment
+  template:
+    metadata:
+      labels:
+        app: service-deployment
+    spec:
+      containers:
+      - name: service-deployment
+        image: taktuk/wepons:v4
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MYSQL_HOST
+          value: "mysql-0.mysql"
+        - name: MYSQL_USER
+          value: "root"
+        - name: MYSQL_PASSWORD
+          value: "password"
+        - name: MYSQL_DATABASE
+          value: "Weapon_Warehouse"

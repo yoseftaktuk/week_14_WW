@@ -1,0 +1,8 @@
+
+build -t taktuk/wepons:v4 .
+push  taktuk/wepons:v4
+oc apply -f k8s
+oc get pods
+oc get srevice
+oc expose service service-service
+oc get route   
