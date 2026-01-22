@@ -68,6 +68,7 @@ class Init_sql:
             'VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
             cursor  = self.cnx.cursor()
             cursor.execute(query, data['weapon_id'], data['weapon_name'], data['weapon_type'], data['weight_kg'], data['manufacturer'], data['origin_country'], data['storage_location'], data['year_estimated'], data['risk_level)'])
+            return {'statu': 'success','inserted_records': 20}
     
     def init_db(self):
         try:

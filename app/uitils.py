@@ -6,16 +6,19 @@ class Data_processing:
         self.df = pd.read_csv(data)
         self.add_risk_level()
         self.fix_ampty()
-        # self.valid()
+        
     def add_risk_level(self):
         self.df['risk_level'] = pd.cut(x=self.df['range_km'], bins=[0 , 20 , 100 ,300, 100000000], labels=['low', 'medium', 'high', 'extreme'])
 
     def fix_ampty(self):
         self.df['manufacturer'] = self.df['manufacturer'].fillna('Unknown', inplace=True)  
         
-    # def valid(self):
-    #     data = self.df
-    #     for i in data:
-    #         # models.Info(i)
-    #         data = data.to_dict()
-    #         print(i)
+    def valid(self, name, con):
+        data = self.df
+        data = data.to_sql(name, con)
+        # for i in data:
+            # models.Info(i)
+            # data = data.to_dict()
+        # print(data)
+            
+            

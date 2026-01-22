@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: service-c-deployment
+  name: service-deployment
   labels:
-    app: service-c-deployment
+    app: service-deployment
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: service-c-deployment
+      app: service-deployment
   template:
     metadata:
       labels:
-        app: service-c-deployment
+        app: service-deployment
     spec:
       containers:
-      - name: service-c-deployment
-        image: josephrechdiner/service-c:v5
+      - name: service-deployment
+        image: taktuk/wepons:v4
         ports:
         - containerPort: 8080
         env:
@@ -27,4 +27,4 @@ spec:
         - name: MYSQL_PASSWORD
           value: "password"
         - name: MYSQL_DATABASE
-          value: "weather_db"
+          value: "Weapon_Warehouse"

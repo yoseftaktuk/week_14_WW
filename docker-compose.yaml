@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql
+    container_name: threat-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: user
+      MYSQL_DATABASE: weather_db
+
+    volumes:
+      - mysql_data:/data/db
+    networks:
+      - threat-network
+
+  api:
+    build: .
+    container_name: threat-api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: Weapon_Warehouse
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - threat-network
+    volumes:
+      - ./terrorists_data.csv:/app/terrorists_data.csv:ro
+
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  threat-network:
+    driver: bridge
