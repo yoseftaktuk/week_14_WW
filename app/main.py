@@ -1,11 +1,14 @@
 from fastapi import FastAPI, HTTPException, UploadFile
 import uvicorn
-
+import uitils
 app = FastAPI()
+
 
 @app.post('/upload')
 def upload_file(file: UploadFile):
-    print(file)
+    processing = uitils.Data_processing(file.file)
+    
+    
 
 
 if __name__ == "__main__":
